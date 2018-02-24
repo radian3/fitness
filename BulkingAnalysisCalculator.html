@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Bulking Analysis Calculator</title>
+</head>
+<body>
+	<h3>Bulking Analysis Calculator</h3>
+	<form id="addForm" action="" method="post">
+		<table border="0">
+			<tr>
+				<td>Start date (mm/dd/yyyy):</td>
+				<td><input type="text" name="startDateVal" value="04/27/1993"
+					size="20" /></td>
+			</tr>
+			<tr>
+				<td>Finish date (mm/dd/yyyy):</td>
+				<td><input type="text" name="finishDateVal" value="02/21/2211"
+					size="20" /></td>
+			</tr>
+
+
+			<tr>
+				<td><input type="button" name="addBtn" value="Calculate" /></td>
+				<td><input type="reset" value="Clear" /></td>
+			</tr>
+			<tr>
+				<td>time passed:</td>
+				<td><input type="text" name="daysCalculated" value="" size="20" />
+				</td>
+			</tr>
+			<tr>
+				<td># of days:</td>
+				<td><input type="text" name="dayscomputed" value="" size="20" />
+				</td>
+			</tr>
+		</table>
+	</form>
+
+	<script type="text/javascript">
+    document.getElementById("addForm").addBtn.onclick = main;
+
+    var elt = document.getElementById("addForm");
+
+    function main() {
+      if (elt.finishDateVal.value == '') {
+        return;
+      }
+      var startDate = new Date(elt.startDateVal.value);
+      var finishDate = new Date(elt.finishDateVal.value);
+      alert(startDate);
+      alert(finishDate);
+
+    } // ending addTwo
+  </script>
+
+
+</body>
+</html>
+
+
