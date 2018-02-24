@@ -41,10 +41,10 @@
 	</form>
 	<table>
 		<tr>
-			<td>Starting LBM (lbs):</td>
+			<td id = "lbm1"></td>
 		</tr>
 		<tr>
-			<td>Starting fat (lbs):</td>
+			<td id = "fat1">Starting fat (lbs):</td>
 		</tr>
 		<tr>
 			<td>Final LBM (lbs):</td>
@@ -120,12 +120,10 @@
       var date2 = new Date(elt.date2.value);
       var weight2 = parseFloat(elt.weight2.value);
       var bf2 = parseFloat(elt.bf2.value);
-      alert(date1);
-      alert(weight1);
-      alert(bf1);
-      alert(date2);
-      alert(weight2);
-      alert(bf2);
+      var lbm1 = (weight1*(100-bf1)/100).toFixed(2);
+      document.getElementById("lbm1").innerHTML = "Starting LBM (lbs): " + lbm1.toString();
+      var fat1 = (weight1*bf1/100).toFixed(2);
+      document.getElementById("fat1").innerHTML = "Starting fat (lbs): " + fat1.toString();
 
     } // ending addTwo
   </script>
