@@ -8,7 +8,7 @@
 		<table border="1">
 			<tr>
 				<td>Start date of bulk (mm/dd/yyyy):</td>
-				<td><input type="text" name="date1" value="04/27/1993"
+				<td><input type="text" name="date1" value="09/29/2017"
 					size="20" /></td>
 			</tr>
 			<tr>
@@ -21,12 +21,13 @@
 			</tr>
 			<tr>
 				<td>Final date of bulk (mm/dd/yyyy):</td>
-				<td><input type="text" name="date2" value="02/21/2211"
+				<td><input type="text" name="date2" value="12/10/2017"
 					size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final weight of bulk (lbs):</td>
-				<td><input type="text" name="weight2" value="153.7123" size="20" /></td>
+				<td><input type="text" name="weight2" value="153.7123"
+					size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final bf % of bulk (ex: 15.5):</td>
@@ -44,7 +45,7 @@
 			<td id="lbm1"></td>
 		</tr>
 		<tr>
-			<td id="fat1">Starting fat (lbs):</td>
+			<td id="fat1"></td>
 		</tr>
 		<tr>
 			<td id="lbm2"></td>
@@ -68,7 +69,7 @@
 			<td id="bulkDuration"></td>
 		</tr>
 		<tr>
-			<td id="caloricSurplus"></td>
+			<td id="actualCaloricSurplus"></td>
 		</tr>
 		<tr>
 			<td id="optimalCaloricSurplus"></td>
@@ -77,13 +78,7 @@
 			<td id="newStartingWeight"></td>
 		</tr>
 		<tr>
-			<td>If you want to gain 5% bf at the recommended caloric surplus
-				above, it would take x days and would end at w pounds under the
-				event that you are gaining 1 lb of muscle per lb of fat.</td>
-		</tr>
-		<tr>
-			<td>However it looks like you gained a bf of y, that would take
-				z days</td>
+			<td id="newFinishWeight"></td>
 		</tr>
 
 	</table>
@@ -132,12 +127,52 @@
       document.getElementById("fatGain").innerHTML = "Fat gain (lbs): "
           + fatGain.toFixed(2).toString();
       var weightGain = weight2 - weight1;
-      var musclePercent = 100*muscleGain / weightGain;
+      var musclePercent = 100 * muscleGain / weightGain;
       document.getElementById("musclePercent").innerHTML = "Percent of weight gain that was muscle: "
           + musclePercent.toFixed(2).toString();
-      document.getElementById("weightGain").innerHTML = "Total weight gain (lbs): " + weightGain.toFixed(2).toString();
+      document.getElementById("weightGain").innerHTML = "Total weight gain (lbs): "
+          + weightGain.toFixed(2).toString();
+      var bulkDuration = daysBetweenDates(date1, date2);
+      document.getElementById("bulkDuration").innerHTML = "Duration of bulk (days): "
+          + bulkDuration.toString();
+      var actualCaloricSurplus = 3500 * weightGain / bulkDuration;
+      document.getElementById("actualCaloricSurplus").innerHTML = "Average caloric surplus during bulk (calories): "
+          + actualCaloricSurplus.toFixed(0).toString();
+      var optimalCaloricSurplus = 2 * musclePercent * actualCaloricSurplus
+          / 100;
+      document.getElementById("optimalCaloricSurplus").innerHTML = "Computed caloric surplus neccessary to achieve 1 lb of muscle per lb of fat gain (calories): "
+          + optimalCaloricSurplus.toFixed(0).toString();
+      var newStartingWeight = lbm2 / ((100 - bf1) / 100);
+      document.getElementById("newStartingWeight").innerHTML = "Calculating new starting weight for your next bulk under the event that you start burning fat (without losing muscle) at "
+          + weight2.toFixed(2).toString()
+          + " lbs and a bf of "
+          + bf2.toFixed(2).toString()
+          + " until you reach a bf of "
+          + bf1.toFixed(2).toString()
+          + " (lbs): "
+          + newStartingWeight.toFixed(2).toString();
+      var newStartingLBM = newStartingWeight * ((100 - bf1) / 100);
+      var newStartingFat = newStartingWeight * bf1 / 100;
+      var r = (100 - bf2) / 100;
+      var q = bf2 / 100;
+      var newFinishWeight = (newStartingLBM - newStartingWeight / 2)
+          / (r - 0.5);
+      var weightToGain = newFinishWeight - newStartingWeight;
+      var lengthOfNewBulk = weightToGain * 3500 / optimalCaloricSurplus;
+      document.getElementById("newFinishWeight").innerHTML = "If your next bulk is started at a weight of "
+          + newStartingWeight.toFixed(2).toString()
+          + " lbs and a bf % of "
+          + bf1.toFixed(2).toString()
+          + " and is done at a caloric surplus of "
+          + optimalCaloricSurplus.toFixed(0).toString()
+          + " with 1 lb of muscle gain per lb of fat until a bf % of "
+          + bf2.toFixed(2).toString()
+          + ", then the bulk would take "
+          + lengthOfNewBulk.toFixed(2).toString() + " days in order to gain " + 
+      weightToGain.toFixed(2).toString() + " lbs and end at a weight of "
+          + newFinishWeight.toFixed(2).toString() + " lbs.";
 
-    } // ending addTwo
+    } // ending main
   </script>
 
 
