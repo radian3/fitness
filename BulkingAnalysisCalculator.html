@@ -13,11 +13,11 @@
 			</tr>
 			<tr>
 				<td>Start weight of bulk (lbs):</td>
-				<td><input type="text" name="weight1" value="145" size="20" /></td>
+				<td><input type="text" name="weight1" value="145.123" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Starting bf % of bulk (ex: 12.2):</td>
-				<td><input type="text" name="bf1" value="11.7" size="20" /></td>
+				<td><input type="text" name="bf1" value="11.7123" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final date of bulk (mm/dd/yyyy):</td>
@@ -26,11 +26,11 @@
 			</tr>
 			<tr>
 				<td>Final weight of bulk (lbs):</td>
-				<td><input type="text" name="weight2" value="153.7" size="20" /></td>
+				<td><input type="text" name="weight2" value="153.7123" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final bf % of bulk (ex: 15.5):</td>
-				<td><input type="text" name="bf2" value="15" size="20" /></td>
+				<td><input type="text" name="bf2" value="15.123" size="20" /></td>
 			</tr>
 			<tr>
 			<tr>
@@ -41,47 +41,40 @@
 	</form>
 	<table>
 		<tr>
-			<td id = "lbm1"></td>
+			<td id="lbm1"></td>
 		</tr>
 		<tr>
-			<td id = "fat1">Starting fat (lbs):</td>
+			<td id="fat1">Starting fat (lbs):</td>
 		</tr>
 		<tr>
-			<td id = "lbm2"></td>
+			<td id="lbm2"></td>
 		</tr>
 		<tr>
-			<td id = "fat2"></td>
+			<td id="fat2"></td>
 		</tr>
 		<tr>
-			<td id = "muscleGain">Muscle gain (lbs):</td>
+			<td id="muscleGain"></td>
 		</tr>
 		<tr>
-			<td>Fat gain (lbs):</td>
+			<td id="fatGain"></td>
 		</tr>
 		<tr>
-			<td>Percent of weight gain that was muscle:</td>
+			<td id="musclePercent"></td>
 		</tr>
 		<tr>
-			<td>Total weight gain (lbs):</td>
+			<td id="weightGain"></td>
 		</tr>
 		<tr>
-			<td>Duration of bulk:</td>
+			<td id="bulkDuration"></td>
 		</tr>
 		<tr>
-			<td>Average caloric surplus during bulk (calories):</td>
+			<td id="caloricSurplus"></td>
 		</tr>
 		<tr>
-			<td>Recommended caloric surplus to achieve 1 lb of muscle per lb
-				of fat:</td>
+			<td id="optimalCaloricSurplus"></td>
 		</tr>
 		<tr>
-			<td>Recommended caloric surplus to achieve 1 lb of muscle per lb
-				of fat:</td>
-		</tr>
-		<tr>
-			<td>If you were to burn fat from you finish weight and finish bf
-				without losing muscle until you return back to your starting bf%,
-				your weight would be:</td>
+			<td id="newStartingWeight"></td>
 		</tr>
 		<tr>
 			<td>If you want to gain 5% bf at the recommended caloric surplus
@@ -120,16 +113,29 @@
       var date2 = new Date(elt.date2.value);
       var weight2 = parseFloat(elt.weight2.value);
       var bf2 = parseFloat(elt.bf2.value);
-      var lbm1 = (weight1*(100-bf1)/100).toFixed(2);
-      document.getElementById("lbm1").innerHTML = "Starting LBM (lbs): " + lbm1.toString();
-      var fat1 = (weight1*bf1/100).toFixed(2);
-      document.getElementById("fat1").innerHTML = "Starting fat (lbs): " + fat1.toString();
-      var lbm2 = (weight2*(100-bf2)/100).toFixed(2);
-      document.getElementById("lbm2").innerHTML = "Final LBM (lbs): " + lbm2.toString();
-      var fat2 = (weight2*bf2/100).toFixed(2);
-      document.getElementById("fat2").innerHTML = "Final fat (lbs): " + fat2.toString();
-      var muscleGain = (lbm2-lbm1).toFixed(2);
-      document.getElementById("muscleGain").innerHTML = "Muscle gain (lbs): " + + muscleGain.toString();
+      var lbm1 = weight1 * (100 - bf1) / 100;
+      document.getElementById("lbm1").innerHTML = "Starting LBM (lbs): "
+          + lbm1.toFixed(2).toString();
+      var fat1 = weight1 * bf1 / 100;
+      document.getElementById("fat1").innerHTML = "Starting fat (lbs): "
+          + fat1.toFixed(2).toString();
+      var lbm2 = weight2 * (100 - bf2) / 100;
+      document.getElementById("lbm2").innerHTML = "Final LBM (lbs): "
+          + lbm2.toFixed(2).toString();
+      var fat2 = weight2 * bf2 / 100;
+      document.getElementById("fat2").innerHTML = "Final fat (lbs): "
+          + fat2.toFixed(2).toString();
+      var muscleGain = lbm2 - lbm1;
+      document.getElementById("muscleGain").innerHTML = "Muscle gain (lbs): "
+          + muscleGain.toFixed(2).toString();
+      var fatGain = fat2 - fat1;
+      document.getElementById("fatGain").innerHTML = "Fat gain (lbs): "
+          + fatGain.toFixed(2).toString();
+      var weightGain = weight2 - weight1;
+      var musclePercent = 100*muscleGain / weightGain;
+      document.getElementById("musclePercent").innerHTML = "Percent of weight gain that was muscle: "
+          + musclePercent.toFixed(2).toString();
+      document.getElementById("weightGain").innerHTML = "Total weight gain (lbs): " + weightGain.toFixed(2).toString();
 
     } // ending addTwo
   </script>
