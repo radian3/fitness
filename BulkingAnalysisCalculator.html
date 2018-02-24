@@ -47,13 +47,13 @@
 			<td id = "fat1">Starting fat (lbs):</td>
 		</tr>
 		<tr>
-			<td>Final LBM (lbs):</td>
+			<td id = "lbm2"></td>
 		</tr>
 		<tr>
-			<td>Final fat (lbs):</td>
+			<td id = "fat2"></td>
 		</tr>
 		<tr>
-			<td>Muscle gain (lbs):</td>
+			<td id = "muscleGain">Muscle gain (lbs):</td>
 		</tr>
 		<tr>
 			<td>Fat gain (lbs):</td>
@@ -124,6 +124,12 @@
       document.getElementById("lbm1").innerHTML = "Starting LBM (lbs): " + lbm1.toString();
       var fat1 = (weight1*bf1/100).toFixed(2);
       document.getElementById("fat1").innerHTML = "Starting fat (lbs): " + fat1.toString();
+      var lbm2 = (weight2*(100-bf2)/100).toFixed(2);
+      document.getElementById("lbm2").innerHTML = "Final LBM (lbs): " + lbm2.toString();
+      var fat2 = (weight2*bf2/100).toFixed(2);
+      document.getElementById("fat2").innerHTML = "Final fat (lbs): " + fat2.toString();
+      var muscleGain = (lbm2-lbm1).toFixed(2);
+      document.getElementById("muscleGain").innerHTML = "Muscle gain (lbs): " + + muscleGain.toString();
 
     } // ending addTwo
   </script>
