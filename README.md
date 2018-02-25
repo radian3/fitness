@@ -10,5 +10,5 @@ Explanation of calculations:
 LBM: weight*((100-bf%)/100)
 Fat: weight*bf%/100
 Average caloric surplus during bulk: 3500 * poundsOfWeightGained / bulkDurationInDays
-Optimal caloric surplus: 2*percentOfWeightGainThatWasMuscle*AverageCaloricSurplusDuringBulk
+Optimal caloric surplus: percentOfWeightGainThatWasMuscle*AverageCaloricSurplusDuringBulk/50
 ```
