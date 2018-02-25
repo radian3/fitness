@@ -8,29 +8,29 @@
 		<table border="1">
 			<tr>
 				<td>Start date of bulk (mm/dd/yyyy):</td>
-				<td><input type="text" name="date1" value="09/29/2017"
+				<td><input type="text" name="date1" value=""
 					size="20" /></td>
 			</tr>
 			<tr>
 				<td>Start weight of bulk (lbs):</td>
-				<td><input type="text" name="weight1" value="145" size="20" /></td>
+				<td><input type="text" name="weight1" value="" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Starting bf % of bulk (ex: 12.2):</td>
-				<td><input type="text" name="bf1" value="11.7" size="20" /></td>
+				<td><input type="text" name="bf1" value="" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final date of bulk (mm/dd/yyyy):</td>
-				<td><input type="text" name="date2" value="12/10/2017"
+				<td><input type="text" name="date2" value=""
 					size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final weight of bulk (lbs):</td>
-				<td><input type="text" name="weight2" value="153.7" size="20" /></td>
+				<td><input type="text" name="weight2" value="" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Final bf % of bulk (ex: 15.5):</td>
-				<td><input type="text" name="bf2" value="15" size="20" /></td>
+				<td><input type="text" name="bf2" value="" size="20" /></td>
 			</tr>
 			<tr>
 			<tr>
@@ -95,6 +95,7 @@
     function calculateResults() {
       var elt = document.getElementById("bulkForm");
       if (elt.date1.value == '' || elt.weight1.value == '' || elt.bf1.value == '' || elt.date2.value == '' || elt.weight2.value == '' || elt.bf2.value == '') {
+        alert("Please fill in all of the fields.");
         return;
       }
       var date1 = new Date(elt.date1.value);
