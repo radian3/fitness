@@ -33,7 +33,6 @@
 				<td><input type="text" name="bf2" value="" size="20" /></td>
 			</tr>
 			<tr>
-			<tr>
 				<td><input type="button" name="addBtn" value="Calculate" /></td>
 				<td><input type="reset" value="Clear" /></td>
 			</tr>
@@ -129,7 +128,6 @@
       var newStartingWeight = lbm2 / ((100 - bf1) / 100);
       document.getElementById("newStartingWeight").innerHTML = "Calculating new starting weight for your next bulk under the event that you start burning fat (without losing muscle) at " + weight2.toFixed(2).toString() + " lbs and a bf of " + bf2.toFixed(2).toString() + " until you reach a bf of " + bf1.toFixed(2).toString() + " (lbs): " + newStartingWeight.toFixed(2).toString();
       var newStartingLBM = newStartingWeight * ((100 - bf1) / 100);
-      var newStartingFat = newStartingWeight * bf1 / 100;
       var proportionOfMuscle = ((100 - bf2) / 100);
       var newFinishWeight = (newStartingLBM - newStartingWeight / 2) / (proportionOfMuscle - 0.5);
       var weightToGain = newFinishWeight - newStartingWeight;
