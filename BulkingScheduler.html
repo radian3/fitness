@@ -36,6 +36,10 @@
 	</form>
 	<table>
 		<tr>
+			<td>This calculator operates under the assumption that you are
+				gaining 1 lb of muscle per lb of fat gained.</td>
+		</tr>
+		<tr>
 			<td id="finishWeight"></td>
 		</tr>
 		<tr>
@@ -76,27 +80,20 @@
       var weight1 = parseFloat(elt.weight1.value);
       var bf1 = parseFloat(elt.bf1.value);
       var caloricSurplus = parseFloat(elt.caloricSurplus.value);
-
       var bf2 = parseFloat(elt.bf2.value);
       var lbm1 = weight1 * (100 - bf1) / 100;
       var fat1 = weight1 * bf1 / 100;
-
-      var newStartingLBM = weight1 * ((100 - bf1) / 100);
-      var newStartingFat = weight1 * bf1 / 100;
+      var startingLBM = weight1 * ((100 - bf1) / 100);
       var proportionOfMuscle = ((100 - bf2) / 100);
-      var newFinishWeight = (newStartingLBM - weight1 / 2) / (proportionOfMuscle - 0.5);
-      var weightToGain = newFinishWeight - weight1;
-      var lengthOfNewBulk = weightToGain * 3500 / caloricSurplus;
-      var newDate = addDays(date1, lengthOfNewBulk.toFixed(0));
-      var someDate = new Date();
-      var duration = 2; //In Days
-      someDate.setTime(someDate.getTime() +  (lengthOfNewBulk.toFixed(0) * 24 * 60 * 60 * 1000));
-      alert(someDate);
-      newDate.setDate(newDate.getDate() + lengthOfNewBulk.toFixed(0));
+      var newFinishWeight = (startingLBM - weight1 / 2) / (proportionOfMuscle - 0.5);
+      var weightGained = newFinishWeight - weight1;
+      var lengthOfBulk = weightGained * 3500 / caloricSurplus;
+      var finishDate = new Date();
+      finishDate.setTime(finishDate.getTime() + (lengthOfBulk.toFixed(0) * 24 * 60 * 60 * 1000));
       document.getElementById("finishWeight").innerHTML = "Finish weight of bulk (lbs): " + newFinishWeight.toFixed(2).toString();
-      document.getElementById("totalWeightGain").innerHTML = "Weight gain (lbs): " + weightToGain.toFixed(2).toString();
-      document.getElementById("finishDate").innerHTML = "Finish date of bulk: " + newDate.toString();
-      document.getElementById("durationOfBulk").innerHTML = "Duration of bulk (days): " + lengthOfNewBulk.toFixed(0).toString();
+      document.getElementById("totalWeightGain").innerHTML = "Weight gain (lbs): " + weightGained.toFixed(2).toString();
+      document.getElementById("finishDate").innerHTML = "Finish date of bulk: " + finishDate.toDateString();
+      document.getElementById("durationOfBulk").innerHTML = "Duration of bulk (days): " + lengthOfBulk.toFixed(0).toString();
 
     }
   </script>
